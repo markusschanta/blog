@@ -1,1 +1,10 @@
 /* css styles */
+
+div.quarto-post .listing-categories .listing-category,
+.quarto-title .quarto-categories .quarto-category {
+    text-transform: lowercase;
+}
+
+.vg-tooltip table {
+    margin-bottom: 0px;
+}
