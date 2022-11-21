@@ -14,25 +14,11 @@
     "text": "A map with the average price per square meters of building land for all Austrian munucipalities.\nThe map below shows the average price per square meters of building land for all Austrian munucipalities (Gemeinden) as per 2020.\n\n\nCode\nimport altair as alt\nimport pandas as pd\n\npreise_url = \"https://www.statistik.at/wcm/idc/idcplg?IdcService=GET_NATIVE_FILE&RevisionSelectionMethod=LatestReleased&dDocName=126150\"\npreise_urls = {\n    \"2016\": \"https://raw.githubusercontent.com/markusschanta/mslib/master/mslib/data/baugrundstueckspreise/files/baugrundstueckspreise_2016.xlsx\",\n    \"2017\": \"https://raw.githubusercontent.com/markusschanta/mslib/master/mslib/data/baugrundstueckspreise/files/baugrundstueckspreise_2017.xlsx\",\n    \"2018\": \"https://raw.githubusercontent.com/markusschanta/mslib/master/mslib/data/baugrundstueckspreise/files/baugrundstueckspreise_2018.xlsx\",\n    \"2019\": \"https://raw.githubusercontent.com/markusschanta/mslib/master/mslib/data/baugrundstueckspreise/files/baugrundstueckspreise_2019.xlsx\",\n    \"2020\": \"https://raw.githubusercontent.com/markusschanta/mslib/master/mslib/data/baugrundstueckspreise/files/baugrundstueckspreise_2020.xlsx\"\n}\n\ngemeinden_url = \"https://raw.githubusercontent.com/ginseng666/GeoJSON-TopoJSON-Austria/master/2021/simplified-99.5/gemeinden_995_topo.json\"\ngemeinden = alt.topo_feature(gemeinden_url, \"gemeinden\")\n\ndef get_preise(year):\n    xl = pd.ExcelFile(preise_urls[year], engine='openpyxl')\n    combined = []\n    for s in xl.sheet_names:\n        sheet = pd.read_excel(xl, engine='openpyxl', header=3, sheet_name=s)\n        sheet = sheet.iloc[:, -3:]\n        sheet.columns = ['iso', 'name', 'price']\n        combined.append(sheet.loc[~sheet.iso.isnull()])\n    return pd.concat(combined).reset_index(drop=True)\n\npreise = get_preise(\"2020\")\n# preise.price = preise.price.clip(upper=300)\n\nc = alt.Chart(gemeinden).mark_geoshape().encode(\n    color=alt.Color('price:Q', title='Price', scale=alt.Scale(domain=[8, 2000], type='log', scheme='spectral', reverse=True)),\n    tooltip=['name:N','price:Q']\n).transform_lookup(\n    lookup='properties.iso',\n    from_=alt.LookupData(preise, 'iso', ['price', 'name'])\n).properties(\n    width=600,\n    height=310\n)\n\nc"
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code."
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Markus Schanta",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nNov 21, 2022\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWho Will Win the World Cup? A Quantitative Approach.\n\n\n\n\n\n\n\npython\n\n\naltair\n\n\nvisualisation\n\n\nfootball\n\n\n\n\n2022 FIFA World Cup betting odds and what they tell us about each team’s likelyhood to succeed.\n\n\n\n\n\n\nNov 19, 2022\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nNov 18, 2022\n\n\nTristan O’Malley\n\n\n\n\n\n\n  \n\n\n\n\nLand Prices in Austria\n\n\n\n\n\n\n\npython\n\n\naltair\n\n\nvisualisation\n\n\naustria\n\n\n\n\n\n\n\n\n\n\n\nNov 17, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "Who Will Win the World Cup? A Quantitative Approach.\n\n\n\n\n\n\n\npython\n\n\naltair\n\n\nvisualisation\n\n\nfootball\n\n\n\n\n2022 FIFA World Cup betting odds and what they tell us about each team’s likelyhood to succeed.\n\n\n\n\n\n\nNov 19, 2022\n\n\n\n\n\n\n  \n\n\n\n\nLand Prices in Austria\n\n\n\n\n\n\n\npython\n\n\naltair\n\n\nvisualisation\n\n\naustria\n\n\n\n\n\n\n\n\n\n\n\nNov 17, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
