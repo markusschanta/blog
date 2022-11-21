@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://github.com/markusschanta/blog/posts/2022-world-cup-start/index.html</loc>
+    <lastmod>2022-11-21T15:45:42.667Z</lastmod>
+  </url>
+  <url>
     <loc>https://github.com/markusschanta/blog/posts/post-with-code/index.html</loc>
-    <lastmod>2022-11-21T15:41:41.809Z</lastmod>
+    <lastmod>2022-11-21T15:45:43.295Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/markusschanta/blog/posts/welcome/index.html</loc>
-    <lastmod>2022-11-21T15:41:42.565Z</lastmod>
+    <lastmod>2022-11-21T15:45:43.579Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/markusschanta/blog/index.html</loc>
-    <lastmod>2022-11-21T15:41:42.965Z</lastmod>
+    <lastmod>2022-11-21T15:45:43.915Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/markusschanta/blog/about.html</loc>
-    <lastmod>2022-11-21T15:41:43.305Z</lastmod>
+    <lastmod>2022-11-21T15:45:44.187Z</lastmod>
   </url>
 </urlset>

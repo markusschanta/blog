@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-11-19">
+<meta name="description" content="2022 FIFA World Cup betting odds and what they tell us about each team’s likelyhood to succeed.">
+
+<title>Markus Schanta - Who Will Win the World Cup? A Quantitative Approach.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Markus Schanta</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Who Will Win the World Cup? A Quantitative Approach.</h1>
+                  <div>
+        <div class="description">
+          2022 FIFA World Cup betting odds and what they tell us about each team’s likelyhood to succeed.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">altair</div>
+                <div class="quarto-category">visualisation</div>
+                <div class="quarto-category">football</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 19, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>This year’s world cup seems a bit like the dish that nobody ordered. Inconvenient ethical questions aside, the world cup is traditionally one of the events around which the highest volume of sports betting is transacted. To put things into perspective, on the seemingly bland question <em>“Will Ecuador reach the Quarter Final?”</em>, more than 5,084 Euros have been wagered on one online betting platform alone. For all of the games of the FIFA World Cup, more than 10 million euros worth of bets have been placed on the same platform. As a data scientist, it’s exciting to observe how all of that punting, in aggregate, produces a quite comprehensive collective valuation of the chances of success for each of the teams.</p>
+<p>The big question is of course: <em>“Who will win the World Cup?”</em> Crunching the numbers, one can work out the implicit probabilities in the odds offered for each team. As of 9 am today, the odds were as follows:</p>
+<div class="cell" data-execution_count="16">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>STAGE_ORDER <span class="op">=</span> [<span class="st">'win'</span>, <span class="st">'final'</span>, <span class="st">'semi'</span>, <span class="st">'quarter'</span>, <span class="st">'qualify'</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>STAGE_ORDER_MAP <span class="op">=</span> {v: k <span class="cf">for</span> k, v <span class="kw">in</span> <span class="bu">enumerate</span>(STAGE_ORDER[::<span class="op">-</span><span class="dv">1</span>])}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>STAGE_NAME_MAP <span class="op">=</span> {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"win"</span>: <span class="st">"Win the Tournament"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"final"</span>: <span class="st">"Reach the Finals"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"semi"</span>: <span class="st">"Reach the Semi-Finals"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"quarter"</span>: <span class="st">"Reach the Quarter-Finals"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"qualify"</span>: <span class="st">"Reach the Round of 16"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>last <span class="op">=</span> pd.read_csv(<span class="st">'teams.20221120.csv'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> last.copy().loc[:, [<span class="st">'country'</span>, <span class="st">'p'</span>, <span class="st">'stage'</span>]]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>chart[<span class="st">'stage_order'</span>] <span class="op">=</span> chart.stage.<span class="bu">apply</span>(<span class="kw">lambda</span> b: STAGE_ORDER_MAP[b])</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>chart[<span class="st">'stage_nice'</span>] <span class="op">=</span> chart.stage.<span class="bu">apply</span>(<span class="kw">lambda</span> b: STAGE_NAME_MAP[b])</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>chart[<span class="st">'y'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> chart.sort_values(<span class="st">'stage_order'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>country_order <span class="op">=</span> <span class="bu">list</span>(chart[chart.stage <span class="op">==</span> <span class="st">'win'</span>].sort_values(<span class="st">'p'</span>, ascending<span class="op">=</span><span class="va">False</span>)[<span class="st">'country'</span>])</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>alt.Chart(chart[chart.stage <span class="op">==</span> <span class="st">'win'</span>]).mark_bar(size<span class="op">=</span><span class="dv">12</span>).encode(</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'country:O'</span>, axis<span class="op">=</span>alt.Axis(title<span class="op">=</span><span class="st">""</span>), sort<span class="op">=</span>country_order),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'p:Q'</span>, axis<span class="op">=</span>alt.Axis(title<span class="op">=</span><span class="st">"Probability"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"%"</span>)),</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    y2<span class="op">=</span><span class="st">'y'</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        field<span class="op">=</span><span class="st">'stage_nice'</span>, <span class="bu">type</span><span class="op">=</span><span class="st">'ordinal'</span>, sort<span class="op">=</span>[STAGE_NAME_MAP[b] <span class="cf">for</span> b <span class="kw">in</span> STAGE_ORDER][::<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">None</span>, scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'greens'</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    tooltip <span class="op">=</span> [</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'country'</span>, title<span class="op">=</span><span class="st">"Country"</span>), </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'p'</span>, title<span class="op">=</span><span class="st">"Probability to Win"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".2%"</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span>{<span class="st">"step"</span>: <span class="dv">16</span>}</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="16">
+
+<div id="altair-viz-dd8313e3ce424c639f227f541c221520"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-dd8313e3ce424c639f227f541c221520") {
+      outputDiv = document.getElementById("altair-viz-dd8313e3ce424c639f227f541c221520");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.17.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "4.17.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-874a1a9aa36af8c44c34c3665a00742f"}, "mark": {"type": "bar", "size": 12}, "encoding": {"color": {"field": "stage_nice", "legend": null, "scale": {"scheme": "greens"}, "sort": ["Reach the Round of 16", "Reach the Quarter-Finals", "Reach the Semi-Finals", "Reach the Finals", "Win the Tournament"], "type": "ordinal"}, "tooltip": [{"field": "country", "title": "Country", "type": "nominal"}, {"field": "p", "format": ".2%", "title": "Probability to Win", "type": "quantitative"}], "x": {"axis": {"title": ""}, "field": "country", "sort": ["Brazil", "Argentina", "France", "Spain", "England", "Germany", "Netherlands", "Portugal", "Belgium", "Denmark", "Uruguay", "Croatia", "Serbia", "Switzerland", "Senegal", "Mexico", "USA", "Ecuador", "Poland", "Wales", "Morocco", "Australia", "Japan", "South Korea", "Cameroon", "Iran", "Qatar", "Ghana", "Canada", "Tunisia", "Saudi Arabia", "Costa Rica"], "type": "ordinal"}, "y": {"axis": {"format": "%", "title": "Probability"}, "field": "p", "type": "quantitative"}, "y2": {"field": "y"}}, "width": {"step": 16}, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-874a1a9aa36af8c44c34c3665a00742f": [{"country": "USA", "p": 0.0041666666666666, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Ecuador", "p": 0.0040816326530612, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Poland", "p": 0.0033898305084745, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Wales", "p": 0.0027027027027027, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Morocco", "p": 0.0023529411764705, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Japan", "p": 0.0019230769230769, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "South Korea", "p": 0.0016129032258064, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Qatar", "p": 0.0014705882352941, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Iran", "p": 0.0015748031496062, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Ghana", "p": 0.0014084507042253, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Cameroon", "p": 0.0015748031496062, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Canada", "p": 0.0012903225806451, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Tunisia", "p": 0.001, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Australia", "p": 0.002, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Mexico", "p": 0.0054054054054054, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Brazil", "p": 0.2247191011235955, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Switzerland", "p": 0.0071428571428571, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Serbia", "p": 0.0102564102564102, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Croatia", "p": 0.0137931034482758, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Uruguay", "p": 0.0204081632653061, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Denmark", "p": 0.032258064516129, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Belgium", "p": 0.0425531914893617, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Portugal", "p": 0.0615384615384615, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Netherlands", "p": 0.0666666666666666, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Germany", "p": 0.0754716981132075, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "England", "p": 0.0816326530612244, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Spain", "p": 0.0851063829787234, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "France", "p": 0.0975609756097561, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Argentina", "p": 0.144927536231884, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Saudi Arabia", "p": 0.001, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Senegal", "p": 0.006060606060606, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Costa Rica", "p": 0.001, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+<p>To work out how these odds are derived, consider the following: As of today, bookmakers are offering to bet on Brazil winning the tournament with a payout of 4.4 times the wager. To bet against Brazil winning the tournament is offered at odds of 4.5. To come up with a probability, we first take the midpoint of those two numbers, which is 4.45. We then invert that number and we get an implied probability of precisely 22.4719% for Brazil to win the World Cup.</p>
+<p>As mentioned, there are a lot more events that people can and do bet on. From those, it is possible to determine the odds of any team reaching the round of 16, quarter-finals, semi-finals and finals. All of these odds for each team are shown in the chart below:</p>
+<div class="cell" data-execution_count="20">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(chart).mark_bar(size<span class="op">=</span><span class="dv">12</span>).encode(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'country:O'</span>, axis<span class="op">=</span>alt.Axis(title<span class="op">=</span><span class="st">""</span>), sort<span class="op">=</span>country_order),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'p:Q'</span>, axis<span class="op">=</span>alt.Axis(title<span class="op">=</span><span class="st">"Probability"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"%"</span>)),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    y2<span class="op">=</span><span class="st">'y'</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        field<span class="op">=</span><span class="st">'stage_nice'</span>, <span class="bu">type</span><span class="op">=</span><span class="st">'ordinal'</span>, sort<span class="op">=</span>[STAGE_NAME_MAP[b] <span class="cf">for</span> b <span class="kw">in</span> STAGE_ORDER][::<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span>alt.Legend(title<span class="op">=</span><span class="st">"Position"</span>), scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'greens'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    tooltip <span class="op">=</span> [</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'country'</span>, title<span class="op">=</span><span class="st">"Country"</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'stage_nice'</span>, title<span class="op">=</span><span class="st">"Position"</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'p'</span>, title<span class="op">=</span><span class="st">"Probability"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".2%"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span>{<span class="st">"step"</span>: <span class="dv">16</span>}</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="20">
+
+<div id="altair-viz-4bf9602a70c443f4b027885c2c564b60"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-4bf9602a70c443f4b027885c2c564b60") {
+      outputDiv = document.getElementById("altair-viz-4bf9602a70c443f4b027885c2c564b60");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.17.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "4.17.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-fd99699af60efc9f1c8b68248c89636b"}, "mark": {"type": "bar", "size": 12}, "encoding": {"color": {"field": "stage_nice", "legend": {"title": "Position"}, "scale": {"scheme": "greens"}, "sort": ["Reach the Round of 16", "Reach the Quarter-Finals", "Reach the Semi-Finals", "Reach the Finals", "Win the Tournament"], "type": "ordinal"}, "tooltip": [{"field": "country", "title": "Country", "type": "nominal"}, {"field": "stage_nice", "title": "Position", "type": "nominal"}, {"field": "p", "format": ".2%", "title": "Probability", "type": "quantitative"}], "x": {"axis": {"title": ""}, "field": "country", "sort": ["Brazil", "Argentina", "France", "Spain", "England", "Germany", "Netherlands", "Portugal", "Belgium", "Denmark", "Uruguay", "Croatia", "Serbia", "Switzerland", "Senegal", "Mexico", "USA", "Ecuador", "Poland", "Wales", "Morocco", "Australia", "Japan", "South Korea", "Cameroon", "Iran", "Qatar", "Ghana", "Canada", "Tunisia", "Saudi Arabia", "Costa Rica"], "type": "ordinal"}, "y": {"axis": {"format": "%", "title": "Probability"}, "field": "p", "type": "quantitative"}, "y2": {"field": "y"}}, "width": {"step": 16}, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-fd99699af60efc9f1c8b68248c89636b": [{"country": "Netherlands", "p": 0.8298755186721991, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Portugal", "p": 0.7968127490039841, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Cameroon", "p": 0.1492537313432836, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Serbia", "p": 0.4739336492890995, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Switzerland", "p": 0.4739336492890995, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Brazil", "p": 0.9049773755656108, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Canada", "p": 0.2409638554216867, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Morocco", "p": 0.334448160535117, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Croatia", "p": 0.6309148264984227, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Belgium", "p": 0.7905138339920947, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Ghana", "p": 0.2380952380952381, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Uruguay", "p": 0.6896551724137931, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Costa Rica", "p": 0.0625, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Japan", "p": 0.2424242424242424, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Germany", "p": 0.8264462809917356, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Spain", "p": 0.8510638297872342, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "South Korea", "p": 0.2797202797202797, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Australia", "p": 0.175438596491228, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Saudi Arabia", "p": 0.131578947368421, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Mexico", "p": 0.4694835680751174, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Tunisia", "p": 0.1904761904761904, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Argentina", "p": 0.896860986547085, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Iran", "p": 0.2439024390243902, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Wales", "p": 0.3921568627450981, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Poland", "p": 0.5, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "England", "p": 0.8810572687224671, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Qatar", "p": 0.2409638554216867, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Ecuador", "p": 0.4694835680751174, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Senegal", "p": 0.4608294930875576, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "France", "p": 0.8733624454148472, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Denmark", "p": 0.7633587786259541, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "USA", "p": 0.4901960784313725, "stage": "qualify", "stage_order": 0, "stage_nice": "Reach the Round of 16", "y": 0}, {"country": "Brazil", "p": 0.7092198581560284, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "England", "p": 0.6191950464396285, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Argentina", "p": 0.6289308176100629, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "France", "p": 0.5865102639296187, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Netherlands", "p": 0.5763688760806917, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Spain", "p": 0.5602240896358543, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Germany", "p": 0.5277044854881267, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Portugal", "p": 0.4694835680751174, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Belgium", "p": 0.4149377593360995, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Croatia", "p": 0.2439024390243902, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Uruguay", "p": 0.2985074626865672, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Costa Rica", "p": 0.010204081632653, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Saudi Arabia", "p": 0.027027027027027, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Tunisia", "p": 0.0512820512820512, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Cameroon", "p": 0.0425531914893617, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Australia", "p": 0.043010752688172, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Iran", "p": 0.0533333333333333, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "South Korea", "p": 0.0571428571428571, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Ghana", "p": 0.0666666666666666, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Denmark", "p": 0.3533568904593639, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Canada", "p": 0.0655737704918032, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Japan", "p": 0.0869565217391304, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Wales", "p": 0.1428571428571428, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Poland", "p": 0.15625, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Ecuador", "p": 0.1470588235294117, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Mexico", "p": 0.1587301587301587, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Senegal", "p": 0.1869158878504673, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Serbia", "p": 0.1886792452830188, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Switzerland", "p": 0.198019801980198, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Qatar", "p": 0.0634920634920634, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Morocco", "p": 0.0980392156862745, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "USA", "p": 0.1801801801801802, "stage": "quarter", "stage_order": 1, "stage_nice": "Reach the Quarter-Finals", "y": 0}, {"country": "Mexico", "p": 0.0588235294117647, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "France", "p": 0.3759398496240601, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Spain", "p": 0.3305785123966942, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "England", "p": 0.32, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Germany", "p": 0.2898550724637681, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Netherlands", "p": 0.2877697841726619, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Portugal", "p": 0.2631578947368421, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Belgium", "p": 0.2197802197802197, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Denmark", "p": 0.1709401709401709, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Uruguay", "p": 0.125, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Croatia", "p": 0.1030927835051546, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Switzerland", "p": 0.0784313725490196, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Serbia", "p": 0.0888888888888888, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Senegal", "p": 0.0727272727272727, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Argentina", "p": 0.4081632653061224, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "USA", "p": 0.0597014925373134, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Wales", "p": 0.0404040404040404, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Costa Rica", "p": 0.003076923076923, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Saudi Arabia", "p": 0.0071428571428571, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Tunisia", "p": 0.0121212121212121, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Australia", "p": 0.0108108108108108, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Iran", "p": 0.0142857142857142, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Cameroon", "p": 0.0133333333333333, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Poland", "p": 0.050632911392405, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Ghana", "p": 0.0176991150442477, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "South Korea", "p": 0.018348623853211, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Canada", "p": 0.0198019801980198, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Morocco", "p": 0.0285714285714285, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Japan", "p": 0.0263157894736842, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Ecuador", "p": 0.0465116279069767, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Qatar", "p": 0.0165289256198347, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Brazil", "p": 0.4854368932038835, "stage": "semi", "stage_order": 2, "stage_nice": "Reach the Semi-Finals", "y": 0}, {"country": "Tunisia", "p": 0.0027777777777777, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Qatar", "p": 0.0031746031746031, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Argentina", "p": 0.2380952380952381, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Brazil", "p": 0.3149606299212598, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Saudi Arabia", "p": 0.0025, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Costa Rica", "p": 0.0017857142857142, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Australia", "p": 0.0039215686274509, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "South Korea", "p": 0.0040816326530612, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Cameroon", "p": 0.0047619047619047, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Iran", "p": 0.0047619047619047, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Canada", "p": 0.0048780487804878, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Ghana", "p": 0.0039215686274509, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Morocco", "p": 0.008, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Ecuador", "p": 0.0117647058823529, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "USA", "p": 0.0133333333333333, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Wales", "p": 0.0148148148148148, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Mexico", "p": 0.016, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Japan", "p": 0.006060606060606, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Poland", "p": 0.0153846153846153, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Spain", "p": 0.1869158878504673, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Germany", "p": 0.1538461538461538, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "England", "p": 0.1538461538461538, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Netherlands", "p": 0.136986301369863, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Portugal", "p": 0.1219512195121951, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Belgium", "p": 0.108695652173913, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "France", "p": 0.2, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Uruguay", "p": 0.0493827160493827, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Croatia", "p": 0.0363636363636363, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Switzerland", "p": 0.025, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Serbia", "p": 0.0238095238095238, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Senegal", "p": 0.0175438596491228, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "Denmark", "p": 0.0754716981132075, "stage": "final", "stage_order": 3, "stage_nice": "Reach the Finals", "y": 0}, {"country": "USA", "p": 0.0041666666666666, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Ecuador", "p": 0.0040816326530612, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Poland", "p": 0.0033898305084745, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Wales", "p": 0.0027027027027027, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Morocco", "p": 0.0023529411764705, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Japan", "p": 0.0019230769230769, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "South Korea", "p": 0.0016129032258064, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Qatar", "p": 0.0014705882352941, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Iran", "p": 0.0015748031496062, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Ghana", "p": 0.0014084507042253, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Cameroon", "p": 0.0015748031496062, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Canada", "p": 0.0012903225806451, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Tunisia", "p": 0.001, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Australia", "p": 0.002, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Mexico", "p": 0.0054054054054054, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Brazil", "p": 0.2247191011235955, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Switzerland", "p": 0.0071428571428571, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Serbia", "p": 0.0102564102564102, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Croatia", "p": 0.0137931034482758, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Uruguay", "p": 0.0204081632653061, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Denmark", "p": 0.032258064516129, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Belgium", "p": 0.0425531914893617, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Portugal", "p": 0.0615384615384615, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Netherlands", "p": 0.0666666666666666, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Germany", "p": 0.0754716981132075, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "England", "p": 0.0816326530612244, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Spain", "p": 0.0851063829787234, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "France", "p": 0.0975609756097561, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Argentina", "p": 0.144927536231884, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Saudi Arabia", "p": 0.001, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Senegal", "p": 0.006060606060606, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}, {"country": "Costa Rica", "p": 0.001, "stage": "win", "stage_order": 4, "stage_nice": "Win the Tournament", "y": 0}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+<p>One thing that stands out here is that the probability ratios between these outcomes are not exactly the same for each team. Take Serbia and Ecuador for example: Serbia has a 1.0% implied chance of winning the tournament, while Ecuador has a 0.4% chance. Despite the better odds to win the tournament, Serbia has a 47.4% chance of qualifying for the round of 16, while Ecuador has a 46.9% chance. This is because Serbia is in a particularly strong group, while Ecuador is in a relatively weak group. Below are the cumulative probabilities of winning the tournament per each group:</p>
+<div class="cell" data-execution_count="23">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> last[last.stage <span class="op">==</span> <span class="st">'qualify'</span>].rename(columns <span class="op">=</span> {<span class="st">'bet'</span>: <span class="st">'group'</span>})[[<span class="st">'country'</span>, <span class="st">'group'</span>]]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> last.merge(groups, left_on<span class="op">=</span><span class="st">'country'</span>, right_on<span class="op">=</span><span class="st">'country'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>win <span class="op">=</span> groups[groups.bet <span class="op">==</span> <span class="st">'win'</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>by_group_chart <span class="op">=</span> win.groupby(<span class="st">'group'</span>).<span class="bu">sum</span>().reset_index()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> by_group_chart.sort_values(<span class="st">'p'</span>, ascending<span class="op">=</span><span class="va">False</span>).reset_index(drop<span class="op">=</span><span class="st">'true'</span>).reset_index().loc[:, [<span class="st">'group'</span>, <span class="st">'index'</span>]]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>y.columns <span class="op">=</span> [<span class="st">'group'</span>, <span class="st">'y'</span>]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> win.groupby(<span class="st">'group'</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.reset_index().reset_index()[[<span class="st">'country'</span>, <span class="st">'level_0'</span>]]).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>x.columns <span class="op">=</span> [<span class="st">'country'</span>, <span class="st">'x'</span>]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>square <span class="op">=</span> win.merge(x, left_on<span class="op">=</span><span class="st">'country'</span>, right_on<span class="op">=</span><span class="st">'country'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>square <span class="op">=</span> square.merge(y, left_on<span class="op">=</span><span class="st">'group'</span>, right_on<span class="op">=</span><span class="st">'group'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> alt.Chart(square).mark_text(baseline<span class="op">=</span><span class="st">"middle"</span>).encode(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'x:O'</span>, axis<span class="op">=</span>alt.Axis(title<span class="op">=</span><span class="st">''</span>, ticks<span class="op">=</span><span class="va">False</span>, labels<span class="op">=</span><span class="va">False</span>, grid<span class="op">=</span><span class="va">False</span>, domain<span class="op">=</span><span class="va">False</span>)),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'y:O'</span>, axis<span class="op">=</span>alt.Axis(title<span class="op">=</span><span class="st">''</span>, ticks<span class="op">=</span><span class="va">False</span>, labels<span class="op">=</span><span class="va">False</span>, grid<span class="op">=</span><span class="va">False</span>, domain<span class="op">=</span><span class="va">False</span>)),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span><span class="st">'country'</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">250</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">200</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> by_group_chart.copy()</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>bars.group <span class="op">=</span> bars.group.<span class="bu">apply</span>(<span class="kw">lambda</span> s: <span class="st">"Group "</span> <span class="op">+</span> s.upper())</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> alt.Chart(bars).mark_bar().encode(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'p:Q'</span>, axis<span class="op">=</span>alt.Axis(title<span class="op">=</span><span class="st">"Combined Probability to Win"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"%"</span>)),</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'group:N'</span>, axis<span class="op">=</span>alt.Axis(title<span class="op">=</span><span class="st">""</span>,), sort<span class="op">=</span><span class="st">'-x'</span>),</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(field<span class="op">=</span><span class="st">'foo'</span>, legend<span class="op">=</span><span class="va">None</span>, scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'greens'</span>)),</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    tooltip <span class="op">=</span> [</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'group'</span>, title<span class="op">=</span><span class="st">"Group"</span>), </span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'p'</span>, title<span class="op">=</span><span class="st">"Combined Probability to Win"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".2%"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">400</span>,</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">200</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>(labels <span class="op">|</span> bars).configure_axisY(</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    labelFontSize<span class="op">=</span><span class="dv">11</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>).configure_view(</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    stroke <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="23">
+
+<div id="altair-viz-b0e65750c8264daeb04b121da17225f7"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-b0e65750c8264daeb04b121da17225f7") {
+      outputDiv = document.getElementById("altair-viz-b0e65750c8264daeb04b121da17225f7");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.17.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "4.17.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300, "stroke": "white"}, "axisY": {"labelFontSize": 11}}, "hconcat": [{"data": {"name": "data-5924a0368278c835275292fd87a7c5e1"}, "mark": {"type": "text", "baseline": "middle"}, "encoding": {"text": {"field": "country", "type": "nominal"}, "x": {"axis": {"domain": false, "grid": false, "labels": false, "ticks": false, "title": ""}, "field": "x", "type": "ordinal"}, "y": {"axis": {"domain": false, "grid": false, "labels": false, "ticks": false, "title": ""}, "field": "y", "type": "ordinal"}}, "height": 200, "width": 250}, {"data": {"name": "data-1029b58aa7dd6c6e50f61f707fed1518"}, "mark": "bar", "encoding": {"color": {"field": "foo", "legend": null, "scale": {"scheme": "greens"}}, "tooltip": [{"field": "group", "title": "Group", "type": "nominal"}, {"field": "p", "format": ".2%", "title": "Combined Probability to Win", "type": "quantitative"}], "x": {"axis": {"format": "%", "title": "Combined Probability to Win"}, "field": "p", "type": "quantitative"}, "y": {"axis": {"title": ""}, "field": "group", "sort": "-x", "type": "nominal"}}, "height": 200, "width": 400}], "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-5924a0368278c835275292fd87a7c5e1": [{"country": "Netherlands", "p": 0.0666666666666666, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "a", "x": 0, "y": 6}, {"country": "Senegal", "p": 0.006060606060606, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "a", "x": 1, "y": 6}, {"country": "Ecuador", "p": 0.0040816326530612, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "a", "x": 2, "y": 6}, {"country": "Qatar", "p": 0.0014705882352941, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "a", "x": 3, "y": 6}, {"country": "England", "p": 0.0816326530612244, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "b", "x": 0, "y": 4}, {"country": "USA", "p": 0.0041666666666666, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "b", "x": 1, "y": 4}, {"country": "Wales", "p": 0.0027027027027027, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "b", "x": 2, "y": 4}, {"country": "Iran", "p": 0.0015748031496062, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "b", "x": 3, "y": 4}, {"country": "Argentina", "p": 0.144927536231884, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "c", "x": 0, "y": 2}, {"country": "Poland", "p": 0.0033898305084745, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "c", "x": 1, "y": 2}, {"country": "Mexico", "p": 0.0054054054054054, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "c", "x": 2, "y": 2}, {"country": "Saudi Arabia", "p": 0.001, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "c", "x": 3, "y": 2}, {"country": "France", "p": 0.0975609756097561, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "d", "x": 0, "y": 3}, {"country": "Denmark", "p": 0.032258064516129, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "d", "x": 1, "y": 3}, {"country": "Australia", "p": 0.002, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "d", "x": 2, "y": 3}, {"country": "Tunisia", "p": 0.001, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "d", "x": 3, "y": 3}, {"country": "Spain", "p": 0.0851063829787234, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "e", "x": 0, "y": 1}, {"country": "Germany", "p": 0.0754716981132075, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "e", "x": 1, "y": 1}, {"country": "Japan", "p": 0.0019230769230769, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "e", "x": 2, "y": 1}, {"country": "Costa Rica", "p": 0.001, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "e", "x": 3, "y": 1}, {"country": "Brazil", "p": 0.2247191011235955, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "g", "x": 0, "y": 0}, {"country": "Switzerland", "p": 0.0071428571428571, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "g", "x": 1, "y": 0}, {"country": "Serbia", "p": 0.0102564102564102, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "g", "x": 2, "y": 0}, {"country": "Cameroon", "p": 0.0015748031496062, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "g", "x": 3, "y": 0}, {"country": "Portugal", "p": 0.0615384615384615, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "h", "x": 0, "y": 5}, {"country": "Uruguay", "p": 0.0204081632653061, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "h", "x": 1, "y": 5}, {"country": "Ghana", "p": 0.0014084507042253, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "h", "x": 2, "y": 5}, {"country": "South Korea", "p": 0.0016129032258064, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "h", "x": 3, "y": 5}, {"country": "Belgium", "p": 0.0425531914893617, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "f", "x": 0, "y": 7}, {"country": "Croatia", "p": 0.0137931034482758, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "f", "x": 1, "y": 7}, {"country": "Morocco", "p": 0.0023529411764705, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "f", "x": 2, "y": 7}, {"country": "Canada", "p": 0.0012903225806451, "date": "2022-11-20", "bet": "win", "stage": "win", "group": "f", "x": 3, "y": 7}], "data-1029b58aa7dd6c6e50f61f707fed1518": [{"group": "Group A", "p": 0.0782794936156279}, {"group": "Group B", "p": 0.0900768255801999}, {"group": "Group C", "p": 0.1547227721457639}, {"group": "Group D", "p": 0.1328190401258851}, {"group": "Group E", "p": 0.1635011580150078}, {"group": "Group F", "p": 0.0599895586947531}, {"group": "Group G", "p": 0.243693171672469}, {"group": "Group H", "p": 0.0849679787337993}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+<p>One final thing one might wonder about is who’s going to emerge as the tournament’s top goal scorer. On this one, Tottenham striker Harry Kane seems to be the consensus favourite after already winning the <a href="https://en.wikipedia.org/wiki/FIFA_World_Cup_awards#Golden_Boot">Golden Boot</a> at the 2018 FIFA World Cup, followed by Kylian Mbappe and Lionel Messi:</p>
+<div class="cell" data-execution_count="24">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>goalscorer <span class="op">=</span> pd.read_csv(<span class="st">'goalscorer.20221120.csv'</span>).sort_values(<span class="st">'p'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>alt.Chart(goalscorer.iloc[:<span class="dv">40</span>]).mark_bar(size<span class="op">=</span><span class="dv">12</span>).encode(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'country:O'</span>, axis<span class="op">=</span>alt.Axis(title<span class="op">=</span><span class="st">"Player"</span>), sort<span class="op">=</span><span class="st">'-y'</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'p:Q'</span>, axis<span class="op">=</span>alt.Axis(title<span class="op">=</span><span class="st">"Probability"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"%"</span>)),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># y2='y',</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        field<span class="op">=</span><span class="st">'stage_nice'</span>, <span class="bu">type</span><span class="op">=</span><span class="st">'ordinal'</span>, sort<span class="op">=</span>[STAGE_NAME_MAP[b] <span class="cf">for</span> b <span class="kw">in</span> STAGE_ORDER][::<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        legend<span class="op">=</span><span class="va">None</span>, scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'greens'</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    tooltip <span class="op">=</span> [</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'country'</span>, title<span class="op">=</span><span class="st">"Player"</span>), </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">'p'</span>, title<span class="op">=</span><span class="st">"Probability"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".2%"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span>{<span class="st">"step"</span>: <span class="dv">16</span>}</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="24">
+
+<div id="altair-viz-a297cf5618b941a890fa84263ff7df79"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-a297cf5618b941a890fa84263ff7df79") {
+      outputDiv = document.getElementById("altair-viz-a297cf5618b941a890fa84263ff7df79");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.17.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "4.17.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-47e390e25d4239e760cb71d13bbd5452"}, "mark": {"type": "bar", "size": 12}, "encoding": {"color": {"field": "stage_nice", "legend": null, "scale": {"scheme": "greens"}, "sort": ["Reach the Round of 16", "Reach the Quarter-Finals", "Reach the Semi-Finals", "Reach the Finals", "Win the Tournament"], "type": "ordinal"}, "tooltip": [{"field": "country", "title": "Player", "type": "nominal"}, {"field": "p", "format": ".2%", "title": "Probability", "type": "quantitative"}], "x": {"axis": {"title": "Player"}, "field": "country", "sort": "-y", "type": "ordinal"}, "y": {"axis": {"format": "%", "title": "Probability"}, "field": "p", "type": "quantitative"}}, "width": {"step": 16}, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-47e390e25d4239e760cb71d13bbd5452": [{"country": "Harry Kane", "b3": 9.4, "b2": 9.6, "b1": 9.8, "l1": 10.0, "l2": 10.5, "l3": 11.0, "mid": 9.9, "p": 0.101010101010101, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Kylian Mbappe", "b3": 9.8, "b2": 10.0, "b1": 10.5, "l1": 11.0, "l2": 11.5, "l3": 12.0, "mid": 10.75, "p": 0.0930232558139534, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Lionel Messi", "b3": 11.0, "b2": 11.5, "b1": 12.0, "l1": 12.5, "l2": 13.0, "l3": 13.5, "mid": 12.25, "p": 0.0816326530612244, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Neymar", "b3": 12.5, "b2": 13.0, "b1": 13.5, "l1": 14.0, "l2": 14.5, "l3": 16.0, "mid": 13.75, "p": 0.0727272727272727, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Lautaro Martinez", "b3": 18.5, "b2": 19.0, "b1": 19.5, "l1": 20.0, "l2": 21.0, "l3": 23.0, "mid": 19.75, "p": 0.050632911392405, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Cristiano Ronaldo", "b3": 18.5, "b2": 19.5, "b1": 20.0, "l1": 21.0, "l2": 26.0, "l3": 1000.0, "mid": 20.5, "p": 0.048780487804878, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Memphis Depay", "b3": 25.0, "b2": 26.0, "b1": 27.0, "l1": 28.0, "l2": 30.0, "l3": 32.0, "mid": 27.5, "p": 0.0363636363636363, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Richarlison", "b3": 26.0, "b2": 27.0, "b1": 28.0, "l1": 29.0, "l2": 30.0, "l3": 32.0, "mid": 28.5, "p": 0.0350877192982456, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Olivier Giroud", "b3": 1.01, "b2": 2.0, "b1": 34.0, "l1": 38.0, "l2": 46.0, "l3": 55.0, "mid": 36.0, "p": 0.0277777777777777, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Alvaro Morata", "b3": 32.0, "b2": 36.0, "b1": 38.0, "l1": 40.0, "l2": 48.0, "l3": 75.0, "mid": 39.0, "p": 0.0256410256410256, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Vinicius Junior", "b3": 29.0, "b2": 36.0, "b1": 38.0, "l1": 42.0, "l2": 44.0, "l3": 48.0, "mid": 40.0, "p": 0.025, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Darwin Nunez", "b3": 36.0, "b2": 38.0, "b1": 40.0, "l1": 44.0, "l2": 48.0, "l3": 50.0, "mid": 42.0, "p": 0.0238095238095238, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Robert Lewandowski", "b3": 32.0, "b2": 40.0, "b1": 46.0, "l1": 55.0, "l2": 60.0, "l3": 65.0, "mid": 50.5, "p": 0.0198019801980198, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Antoine Griezmann", "b3": 1.01, "b2": 42.0, "b1": 46.0, "l1": 70.0, "l2": 150.0, "l3": 190.0, "mid": 58.0, "p": 0.0172413793103448, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Romelu Lukaku", "b3": 30.0, "b2": 36.0, "b1": 50.0, "l1": 80.0, "l2": 90.0, "l3": 140.0, "mid": 65.0, "p": 0.0153846153846153, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Kai Havertz", "b3": 44.0, "b2": 50.0, "b1": 60.0, "l1": 70.0, "l2": 75.0, "l3": 100.0, "mid": 65.0, "p": 0.0153846153846153, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Aleksandar Mitrovic", "b3": 50.0, "b2": 55.0, "b1": 60.0, "l1": 70.0, "l2": 85.0, "l3": 100.0, "mid": 65.0, "p": 0.0153846153846153, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Cody Gakpo", "b3": 48.0, "b2": 50.0, "b1": 60.0, "l1": 75.0, "l2": 100.0, "l3": 180.0, "mid": 67.5, "p": 0.0148148148148148, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Serge Gnabry", "b3": 50.0, "b2": 60.0, "b1": 65.0, "l1": 70.0, "l2": 80.0, "l3": 130.0, "mid": 67.5, "p": 0.0148148148148148, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Luis Suarez", "b3": 55.0, "b2": 70.0, "b1": 80.0, "l1": 90.0, "l2": 100.0, "l3": 120.0, "mid": 85.0, "p": 0.0117647058823529, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Julian Alvarez", "b3": 65.0, "b2": 70.0, "b1": 75.0, "l1": 100.0, "l2": 110.0, "l3": null, "mid": 87.5, "p": 0.0114285714285714, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Jamal Musiala", "b3": 70.0, "b2": 75.0, "b1": 80.0, "l1": 95.0, "l2": 130.0, "l3": 200.0, "mid": 87.5, "p": 0.0114285714285714, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Ferran Torres", "b3": 70.0, "b2": 80.0, "b1": 95.0, "l1": 110.0, "l2": 120.0, "l3": 1000.0, "mid": 102.5, "p": 0.0097560975609756, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Kevin De Bruyne", "b3": 36.0, "b2": 60.0, "b1": 80.0, "l1": 130.0, "l2": 150.0, "l3": 200.0, "mid": 105.0, "p": 0.0095238095238095, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Dusan Vlahovic", "b3": 60.0, "b2": 75.0, "b1": 100.0, "l1": 120.0, "l2": 150.0, "l3": 1000.0, "mid": 110.0, "p": 0.009090909090909, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Phil Foden", "b3": 70.0, "b2": 85.0, "b1": 100.0, "l1": 130.0, "l2": 140.0, "l3": 150.0, "mid": 115.0, "p": 0.008695652173913, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Steven Bergwijn", "b3": 65.0, "b2": 70.0, "b1": 90.0, "l1": 150.0, "l2": null, "l3": null, "mid": 120.0, "p": 0.0083333333333333, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Raheem Sterling", "b3": 90.0, "b2": 100.0, "b1": 110.0, "l1": 130.0, "l2": 1000.0, "l3": null, "mid": 120.0, "p": 0.0083333333333333, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Michy Batshuayi", "b3": 90.0, "b2": 100.0, "b1": 110.0, "l1": 140.0, "l2": 150.0, "l3": 200.0, "mid": 125.0, "p": 0.008, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Thomas Muller", "b3": 75.0, "b2": 100.0, "b1": 120.0, "l1": 130.0, "l2": 140.0, "l3": 440.0, "mid": 125.0, "p": 0.008, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Christian Eriksen", "b3": 80.0, "b2": 100.0, "b1": 140.0, "l1": 170.0, "l2": 200.0, "l3": 810.0, "mid": 155.0, "p": 0.0064516129032258, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Bruno Fernandes", "b3": 130.0, "b2": 170.0, "b1": 180.0, "l1": 230.0, "l2": 290.0, "l3": 500.0, "mid": 205.0, "p": 0.0048780487804878, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Leroy Sane", "b3": 120.0, "b2": 160.0, "b1": 180.0, "l1": 230.0, "l2": 240.0, "l3": 1000.0, "mid": 205.0, "p": 0.0048780487804878, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Bukayo Saka", "b3": 190.0, "b2": 200.0, "b1": 210.0, "l1": 250.0, "l2": 260.0, "l3": 450.0, "mid": 230.0, "p": 0.0043478260869565, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Breel Embolo", "b3": 1.01, "b2": 100.0, "b1": 200.0, "l1": 280.0, "l2": 300.0, "l3": 400.0, "mid": 240.0, "p": 0.0041666666666666, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Gareth Bale", "b3": 80.0, "b2": 150.0, "b1": 230.0, "l1": 270.0, "l2": 300.0, "l3": 390.0, "mid": 250.0, "p": 0.004, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Christian Pulisic", "b3": 1.01, "b2": 90.0, "b1": 200.0, "l1": 300.0, "l2": 310.0, "l3": 630.0, "mid": 250.0, "p": 0.004, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Kingsley Coman", "b3": 220.0, "b2": 260.0, "b1": 280.0, "l1": null, "l2": null, "l3": null, "mid": 280.0, "p": 0.0035714285714285, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Karim Benzema", "b3": 50.0, "b2": 60.0, "b1": 300.0, "l1": null, "l2": null, "l3": null, "mid": 300.0, "p": 0.0033333333333333, "date": "2022-11-20", "bet": "goalscorer"}, {"country": "Leandro Trossard", "b3": 110.0, "b2": 250.0, "b1": 260.0, "l1": 390.0, "l2": 920.0, "l3": 990.0, "mid": 325.0, "p": 0.003076923076923, "date": "2022-11-20", "bet": "goalscorer"}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+<p>The World Cup kicks off tomorrow with the classic crowd-pleaser Qatar v Ecuador. We will see whether the host nation will be able to turn the 9.8% odds of winning in their favour. Maybe instead the Ecuadorians can capitalise on their 68.3% implied probability of winning the game or at least achieve the draw that has a 21.9% probability. Time will tell! Until then you can follow this blog for more quantitative analysis of the World Cup and updates about how these probabilities shift as the events unfold.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
