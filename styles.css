@@ -1,5 +1,9 @@
 /* css styles */
 
+#title-block-header.quarto-title-block.default .quarto-title .title {
+    margin-bottom: 1rem;
+}
+
 div.quarto-post .listing-categories .listing-category,
 .quarto-title .quarto-categories .quarto-category {
     text-transform: lowercase;
