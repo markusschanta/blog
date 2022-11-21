@@ -12,3 +12,7 @@ div.quarto-post .listing-categories .listing-category,
 .vg-tooltip table {
     margin-bottom: 0px;
 }
+
+div.sourceCode {
+    font-size: 0.8rem;
+}
