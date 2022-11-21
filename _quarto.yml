@@ -5,6 +5,7 @@ project:
 website:
   title: "Markus Schanta"
   navbar:
+    background: light
     right:
       - about.qmd
       - icon: github
