@@ -19,6 +19,8 @@ website:
       - text: "Privacy"
         href: privacy.qmd
     background: light
+  google-analytics:
+    tracking-id: "G-YDBEHTJR49"
 format:
   html:
     theme: cosmo
