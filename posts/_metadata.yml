@@ -10,3 +10,7 @@ title-block-banner: true
 format:
   html:
     code-fold: true
+
+comments:
+  giscus:
+    repo: markusschanta/blog
