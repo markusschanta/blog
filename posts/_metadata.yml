@@ -14,3 +14,11 @@ format:
 comments:
   giscus:
     repo: markusschanta/blog
+    repo-id: "R_kgDOIefVzA"
+    category: "On-site Discussion"
+    category-id: "DIC_kwDOIefVzM4CSs83"
+    mapping: "pathname"
+    reactions-enabled: true
+    loading: lazy
+    input-position: "bottom"
+    theme: "light"
