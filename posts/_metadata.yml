@@ -19,6 +19,5 @@ comments:
     category-id: "DIC_kwDOIefVzM4CSs83"
     mapping: "pathname"
     reactions-enabled: true
-    loading: lazy
     input-position: "bottom"
     theme: "light"
