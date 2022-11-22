@@ -12,6 +12,13 @@ website:
         href: https://github.com/markusschanta
       - icon: twitter
         href: https://twitter.com/markusschanta
+  page-footer:
+    center:
+      - text: "Legal"
+        href: legal.qmd
+      - text: "Privacy"
+        href: privacy.qmd
+    background: light
 format:
   html:
     theme: cosmo
