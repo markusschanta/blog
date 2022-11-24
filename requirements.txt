@@ -1,5 +1,6 @@
 altair
 beautifulsoup4
 numpy
+openpyxl
 pandas
 requests
