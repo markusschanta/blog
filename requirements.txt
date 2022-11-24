@@ -1,3 +1,5 @@
 altair
+beautifulsoup4
 numpy
 pandas
+requests
