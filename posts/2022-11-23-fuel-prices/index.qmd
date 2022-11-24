@@ -1,0 +1,184 @@
+---
+jupyter: python3
+---
+
+---
+title: "Fuel Prices in Austria"
+date: "2022-11-23"
+categories: [python, altair, visualisation, economics]
+description: An analysis of fuel prices in Austria across regions, fuel types and over time.
+image: "2022-11-23-fuel-prices.png"
+---
+
+Throughout 2022 inflation has driven up the prices of goods and services across the board. One area that was considerably affected was energy in general and fuel prices, in particular. Due to various reasons, the price of diesel fuel seemed to be more impacted than regular (Super) fuel.
+
+[E-Control (ECG)](https://en.wikipedia.org/wiki/E-Control), the national regulator for electricity and natural gas markets in Austria collects and publishes statistics on fuel prices across the country. The [dataset on the E-Control website](https://www.e-control.at/spritpreisrechner) contains the median prices for diesel and regular ("Super 95") fuel for [all nine states in Austria](https://en.wikipedia.org/wiki/States_of_Austria).
+
+The chart below shows the price development of diesel and super fuel during 2022:
+
+```{python}
+import altair as alt
+import pandas as pd
+import requests 
+from bs4 import BeautifulSoup
+
+
+url = 'https://www.e-control.at'
+r = requests.get(url + '/spritpreisrechner') 
+
+soup = BeautifulSoup(r.content) 
+download_url = url + soup.find_all("p", class_="ec-media-heading")[0].find_all(['a'])[0]['href']
+
+data_raw = pd.read_excel(download_url, sheet_name='Median Diesel & Super')
+
+diesel_index = data_raw[data_raw.iloc[:, 0] == 'DIESEL'].index[0]
+super_index = data_raw[data_raw.iloc[:, 0] == 'SUPER'].index[0]
+
+diesel_data = data_raw.iloc[(diesel_index + 1):(super_index - 3), :]
+diesel_data.columns = data_raw.iloc[diesel_index].str.replace("-\n", "")
+diesel_data = diesel_data.set_index('DIESEL')
+diesel_data.columns.name = None
+diesel_data.index.name = None
+
+super_data = data_raw.iloc[(super_index + 1):, :]
+super_data.columns = data_raw.iloc[super_index].str.replace("-\n", "")
+super_data = super_data.set_index('SUPER')
+super_data.columns.name = None
+super_data.index.name = None
+
+plot = pd.DataFrame()
+plot['Diesel'] = diesel_data['Österreich']
+plot['Super'] = super_data['Österreich']
+
+plot = pd.melt(plot.reset_index(), id_vars=['index'], value_vars=plot.columns).dropna()
+plot.columns = ['Date', 'Fuel Type', 'Price']
+
+alt.Chart(plot).mark_line().encode(
+    alt.X('Date', title=None),
+    alt.Y('Price', title="Price (EUR/l)"),
+    color=alt.Color(field='Fuel Type', scale=alt.Scale(scheme='category20'), title='Fuel Type'),
+    tooltip=['Fuel Type', 'Date', 'Price']
+).properties(
+    width=550,
+    height=300
+)
+```
+
+In the above chart it can be seen that starting in August 2022, the price of diesel fuel increased beyond the price of Super fuel by a significant amount. This becomes particularly noticeable when plotting the spread (ie. Diesel price minus Super price) between the two prices:
+
+```{python}
+plot = diesel_data['Österreich'].sub(super_data['Österreich']).to_frame('Premium')
+
+plot = pd.melt(plot.reset_index(), id_vars=['index'], value_vars=plot.columns).dropna()
+plot.columns = ['Date', 'Value', 'Premium']
+
+plot_pos = plot.copy()
+plot_pos.Premium = plot_pos.Premium.clip(lower=0)
+
+red = alt.Chart(plot_pos).mark_area(
+    color=alt.Gradient(
+        gradient='linear',
+        stops=[alt.GradientStop(color='rgba(139, 0, 0, 0)', offset=0),
+               alt.GradientStop(color='rgba(139, 0, 0, 0.5)', offset=1)],
+        x1=1, x2=1, y1=plot.Premium.abs().max() / plot.Premium.max(), y2=0
+    )
+).encode(
+    alt.X('Date:T'),
+    alt.Y('Premium:Q')
+)
+
+plot_neg = plot.copy()
+plot_neg.Premium = plot_neg.Premium.clip(upper=0)
+
+green = alt.Chart(plot_neg).mark_area(
+    color=alt.Gradient(
+        gradient='linear',
+        stops=[alt.GradientStop(color='rgba(0, 100, 0, 0)', offset=0),
+               alt.GradientStop(color='rgba(0, 100, 0, 0.5)', offset=1)],
+        x1=1, x2=1, y1=0, y2=plot.Premium.abs().max() / -plot.Premium.min()
+    )
+).encode(
+    alt.X('Date:T'),
+    alt.Y('Premium:Q')
+)
+
+line = alt.Chart(plot).mark_line().encode(
+    alt.X('Date', scale=alt.Scale(zero=False), title=None),
+    alt.Y('Premium', title="Diesel premium (EUR/l)"),
+    color=alt.value('darkslategrey'),
+    tooltip=['Date', 'Premium']
+)
+
+(green + red + line).properties(
+    width=550,
+    height=300
+)
+```
+
+The spread peaked in November 2022 at a premium of almost 30 cents per litre of diesel fuel. As fuel prices decreased later in November the prices for both fuel types also started to converge.
+
+In addition to the federal median prices, E-Control also publish a separate median price for each of the nine Austrian states. They broadly track each other with some amount of variance. The chart below shows the premium for each of the states over the federal median (ie. state median minus federal median) with a 7-day smo0thing applied for clarity:
+
+```{python}
+average = diesel_data.add(super_data).div(2)
+
+plot = average.sub(average['Österreich'], axis=0).iloc[:, :-2].rolling(7).mean()
+
+plot = pd.melt(plot.reset_index(), id_vars=['index'], value_vars=plot.columns).dropna()
+plot.columns = ['Date', 'Region', 'Premium']
+
+init = [{"Region": r} for r in set(plot.Region)]
+highlight = alt.selection(type='multi', on='mouseover', fields=['Region'], init=init)
+
+alt.Chart(plot).mark_line().encode(
+    alt.X('Date', title=None),
+    alt.Y('Premium', title="Regional Premium (EUR/l)"),
+    color=alt.Color(field='Region', scale=alt.Scale(scheme='category20')),
+    opacity=alt.condition(~highlight, alt.value(0.75), alt.value(1)),
+    size=alt.condition(~highlight, alt.value(1), alt.value(1.5)),
+    tooltip=['Region', alt.Tooltip('Premium', format=".2"), 'Date']
+).add_selection(
+    highlight
+).properties(
+    width=550,
+    height=300
+)
+```
+
+The chart is a bit busy but it's visible that certain states (in particular the western-most states Tirol and Vorarlberg) seem to have a price level that is consistently above the federal median. This becomes more clear when averaging over the whole time series:
+
+```{python}
+plot = average.sub(average['Österreich'], axis=0).iloc[:, :-2].mean().reset_index()
+plot.columns = ['Region', 'Premium']
+
+alt.Chart(plot).mark_bar(size=30).encode(
+    alt.X('Region', title=None, axis=alt.Axis(labelAngle=0), sort='-y'),
+    alt.Y('Premium', title="Regional Premium (EUR/l)"),
+    tooltip=['Region', alt.Tooltip('Premium', format=".2")]
+).properties(
+    width=550,
+    height=300
+)
+```
+
+Fuel prices in Tirol are approximately 4.1 cents higher than the national average and in Vorarlberg, prices are about 3.6 cents higher per litre.
+
+The last aspect that stands out visually in the first chart is that there seems to be a cyclical, weekly pattern in the price time series. When computing the average prices, it can indeed be seen that fuel prices are almost 1.5 cents higher towards the end of the work week and bottom on Sundays, 2.7 cents below the weekly average:
+
+```{python}
+days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+plot = average.groupby(average.index.weekday)["Österreich"].mean().reset_index()
+plot.columns = ['Weekday', 'Premium']
+plot.Premium -= plot.Premium.mean()
+plot.Weekday = days
+
+alt.Chart(plot).mark_bar(size=30).encode(
+    alt.X('Weekday', title="", axis=alt.Axis(labelAngle=0), sort=days),
+    alt.Y('Premium', title="Weekday Premium (EUR/l)"),
+    tooltip=['Weekday', alt.Tooltip('Premium', format=".2")]
+).properties(
+    width=550,
+    height=300
+)
+```
+
