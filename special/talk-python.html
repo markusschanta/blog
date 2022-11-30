@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Markus Schanta - Talk Python - Episode Outline</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YDBEHTJR49"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YDBEHTJR49', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Markus Schanta</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/markusschanta"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/markusschanta"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#links-from-the-show" id="toc-links-from-the-show" class="nav-link active" data-scroll-target="#links-from-the-show">Links from the show</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#bio" id="toc-bio" class="nav-link" data-scroll-target="#bio">Bio</a></li>
+  <li><a href="#what-do-you-do-day-to-day" id="toc-what-do-you-do-day-to-day" class="nav-link" data-scroll-target="#what-do-you-do-day-to-day">What do you do day-to-day?</a></li>
+  <li><a href="#how-did-you-get-into-programming-python" id="toc-how-did-you-get-into-programming-python" class="nav-link" data-scroll-target="#how-did-you-get-into-programming-python">How did you get into programming? Python?</a></li>
+  </ul></li>
+  <li><a href="#tools-from-the-list" id="toc-tools-from-the-list" class="nav-link" data-scroll-target="#tools-from-the-list">Tools from the List</a>
+  <ul class="collapse">
+  <li><a href="#altairvega" id="toc-altairvega" class="nav-link" data-scroll-target="#altairvega">Altair/Vega</a></li>
+  <li><a href="#nbconvert" id="toc-nbconvert" class="nav-link" data-scroll-target="#nbconvert">nbconvert</a></li>
+  <li><a href="#jupytext" id="toc-jupytext" class="nav-link" data-scroll-target="#jupytext">Jupytext</a></li>
+  <li><a href="#deepnote" id="toc-deepnote" class="nav-link" data-scroll-target="#deepnote">Deepnote</a></li>
+  <li><a href="#nbdev" id="toc-nbdev" class="nav-link" data-scroll-target="#nbdev">nbdev</a></li>
+  </ul></li>
+  <li><a href="#miscellaneous" id="toc-miscellaneous" class="nav-link" data-scroll-target="#miscellaneous">Miscellaneous</a>
+  <ul class="collapse">
+  <li><a href="#favorite-editor" id="toc-favorite-editor" class="nav-link" data-scroll-target="#favorite-editor">Favorite Editor</a></li>
+  <li><a href="#shout-out" id="toc-shout-out" class="nav-link" data-scroll-target="#shout-out">Shout-out</a></li>
+  <li><a href="#how-did-i-start-the-list" id="toc-how-did-i-start-the-list" class="nav-link" data-scroll-target="#how-did-i-start-the-list">How did I start the list</a></li>
+  <li><a href="#final-call-to-action" id="toc-final-call-to-action" class="nav-link" data-scroll-target="#final-call-to-action">Final call to action</a></li>
+  <li><a href="#open-ended-topics" id="toc-open-ended-topics" class="nav-link" data-scroll-target="#open-ended-topics">Open-ended Topics</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Talk Python - Episode Outline</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="links-from-the-show" class="level2">
+<h2 class="anchored" data-anchor-id="links-from-the-show">Links from the show</h2>
+<pre><code>Awesome Jupyter: https://github.com/markusschanta/awesome-jupyter
+
+Markus Schanta
+GitHub: https://github.com/markusschanta
+Blog: https://blog.markus.schanta.at
+Twitter: https://twitter.com/markusschanta
+
+Some of the highlighted packages:
+Altair: https://altair-viz.github.io
+nbconvert: https://github.com/jupyter/nbconvert
+Jupytext: https://jupytext.readthedocs.io
+Deepnote: https://deepnote.com
+nbdev: https://nbdev.fast.ai</code></pre>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="bio" class="level3">
+<h3 class="anchored" data-anchor-id="bio">Bio</h3>
+<p>I’m a Founding Partner of BlueBalance Capital, independent, owner-managed alternative asset management company based in Vienna. I’ve done that for over 3 years now. Before that I was a quant at the London-based asset management firm Man Group and before that, I was a quantitative strategist (Strat) at Goldman Sachs. I hold a Masters degree in Computer Science from Columbia University in New York, where I also received a Fulbright Scholarship and a Bachelors degree from Vienna University of Technology.</p>
+</section>
+<section id="what-do-you-do-day-to-day" class="level3">
+<h3 class="anchored" data-anchor-id="what-do-you-do-day-to-day">What do you do day-to-day?</h3>
+<p>To summarise it in a concise answer, I’d say I analyse data. In my day-to-day job, that is very often a piece of financial data and most of the time it’s with the intention to better understand some economic development, a company or an industry. In technical terms, that means a lot of data wrangling in Python using pandas or visualising data. I used to quip that I make a living chaining pandas functions together in fancy ways. For better or worse it’s not far from the truth.</p>
+</section>
+<section id="how-did-you-get-into-programming-python" class="level3">
+<h3 class="anchored" data-anchor-id="how-did-you-get-into-programming-python">How did you get into programming? Python?</h3>
+<p>Buying a computer when I was 10 years old was probably the best career decision my parents ever made for me. Started programming when I was 12 in C. That didn’t go to well. Learned Borland Delphi in high school. At Vienna University of Tech, the curriculum was mostly Java (2006), but also some Haskell and Prolog. First came in touch with Python at Columbia (2011). At Goldman, we used a proprietary language (Slang/SecDB). Man Group was Python, that’s where I learned “proper” Python. Been using it ever since for Data analysis/research/automation.</p>
+</section>
+</section>
+<section id="tools-from-the-list" class="level2">
+<h2 class="anchored" data-anchor-id="tools-from-the-list">Tools from the List</h2>
+<section id="altairvega" class="level3">
+<h3 class="anchored" data-anchor-id="altairvega">Altair/Vega</h3>
+<p><strong><a href="https://altair-viz.github.io/">Link</a></strong></p>
+<ul>
+<li>Category: Visualisation</li>
+<li>Declarative Visualisation Library</li>
+<li>In general, visualisation libraries are dime-a-dozen</li>
+<li>Explain relationship between D3 / Vega / Altair</li>
+<li>Vega is to Data Visualization what SQL is to Data Querying.</li>
+</ul>
+</section>
+<section id="nbconvert" class="level3">
+<h3 class="anchored" data-anchor-id="nbconvert">nbconvert</h3>
+<p><strong><a href="https://github.com/jupyter/nbconvert">Link</a></strong></p>
+<ul>
+<li>Category: Conversion</li>
+<li>Convert a Jupyter notebook into HTML, LaTeX, PDF, Reveal JS, Markdown</li>
+<li>Scriptable</li>
+<li>Render notebooks with output only</li>
+<li>Inject parameters</li>
+<li>Officially part of Jupyter: well-maintained, documented, future-proof</li>
+</ul>
+</section>
+<section id="jupytext" class="level3">
+<h3 class="anchored" data-anchor-id="jupytext">Jupytext</h3>
+<p><strong><a href="https://jupytext.readthedocs.io/">Link</a></strong></p>
+<ul>
+<li>The .ipynb format stores input / output / meta-data.</li>
+<li>The advantage is that you get a meaningful output.</li>
+<li>One of the disadvantages is that you don’t get clean diffs.</li>
+<li>Paired notebooks: .ipynb &lt;=&gt; markdown-like format (percent format, jupytext)</li>
+<li>Clean diffs</li>
+</ul>
+</section>
+<section id="deepnote" class="level3">
+<h3 class="anchored" data-anchor-id="deepnote">Deepnote</h3>
+<p><strong><a href="https://deepnote.com/">Link</a></strong></p>
+<ul>
+<li>Hosted notebook solution</li>
+<li>Collaborative / environments
+<ul>
+<li>Share</li>
+<li>Real-time collaboration</li>
+<li>Comments</li>
+<li>Permissions</li>
+</ul></li>
+<li>Additional capabilities
+<ul>
+<li>Versions</li>
+<li>Scheduling</li>
+<li>Custom Environments</li>
+<li>Integrations</li>
+</ul></li>
+<li>Ergonomics
+<ul>
+<li>Richer/denser UI</li>
+<li>Variable Explorer</li>
+<li>Environment</li>
+</ul></li>
+</ul>
+</section>
+<section id="nbdev" class="level3">
+<h3 class="anchored" data-anchor-id="nbdev">nbdev</h3>
+<p><strong><a href="https://nbdev.fast.ai/">Link</a></strong></p>
+<ul>
+<li>A true literate programming environment, as envisioned by Donald Knuth back in 1983</li>
+<li>“Write, test, document, and distribute software packages and technical articles — all in one place, your notebook.”</li>
+<li>Write code in your notebook.</li>
+<li>Write tests in your notebook. These can then run on Github.</li>
+<li>Write the documentation in the same notebook.</li>
+<li>Deploy packages from notebook.</li>
+</ul>
+</section>
+</section>
+<section id="miscellaneous" class="level2">
+<h2 class="anchored" data-anchor-id="miscellaneous">Miscellaneous</h2>
+<section id="favorite-editor" class="level3">
+<h3 class="anchored" data-anchor-id="favorite-editor">Favorite Editor</h3>
+<ul>
+<li>Jupyter</li>
+<li>I’m definitely guilty of over-using it</li>
+</ul>
+</section>
+<section id="shout-out" class="level3">
+<h3 class="anchored" data-anchor-id="shout-out">Shout-out</h3>
+<ul>
+<li>Jupyter builtins (%debug, %time, !)</li>
+</ul>
+</section>
+<section id="how-did-i-start-the-list" class="level3">
+<h3 class="anchored" data-anchor-id="how-did-i-start-the-list">How did I start the list</h3>
+<ul>
+<li>first JupyterCon conference in New York, conference notes turned into this list</li>
+</ul>
+</section>
+<section id="final-call-to-action" class="level3">
+<h3 class="anchored" data-anchor-id="final-call-to-action">Final call to action</h3>
+<ul>
+<li>If you build something, don’t be shy to put it on GitHub/blog: 1) you will learn something, 2) it will be a satisfying experience and 3) other people might find it useful</li>
+</ul>
+</section>
+<section id="open-ended-topics" class="level3">
+<h3 class="anchored" data-anchor-id="open-ended-topics">Open-ended Topics</h3>
+<ul>
+<li>Python/Jupyter versus JavaScript/Observable for data analysis</li>
+<li>Use of Jupyter in the enterprise</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">
+        <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../legal.html">Legal</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../privacy.html">Privacy</a>
+  </li>  
+</ul>
+      </div>
+  </div>
+</footer>
+
+
+
+</body></html>
