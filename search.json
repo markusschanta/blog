@@ -7,13 +7,6 @@
     "text": "About this blog"
   },
   {
-    "objectID": "special/index.html",
-    "href": "special/index.html",
-    "title": "Special",
-    "section": "",
-    "text": "The code below shows the time of page generation:\n\nimport time\n\ngeneration = time.strftime('%A %B %d %Y at %H:%M:%S (UTC)')\nprint(\"This page was generated at %s.\" % generation)\n\nThis page was generated at Wednesday November 23 2022 at 12:32:54 (UTC)."
-  },
-  {
     "objectID": "special/talk-python.html",
     "href": "special/talk-python.html",
     "title": "Talk Python - Episode Outline",
@@ -40,6 +33,13 @@
     "title": "Talk Python - Episode Outline",
     "section": "Miscellaneous",
     "text": "Miscellaneous\n\nFavorite Editor\n\nJupyter\nI’m definitely guilty of over-using it\n\n\n\nShout-out\n\nJupyter builtins (%debug, %time, !)\n\n\n\nHow did I start the list\n\nfirst JupyterCon conference in New York, conference notes turned into this list\n\n\n\nFinal call to action\n\nIf you build something, don’t be shy to put it on GitHub/blog: 1) you will learn something, 2) it will be a satisfying experience and 3) other people might find it useful\n\n\n\nOpen-ended Topics\n\nPython/Jupyter versus JavaScript/Observable for data analysis\nUse of Jupyter in the enterprise"
+  },
+  {
+    "objectID": "special.html",
+    "href": "special.html",
+    "title": "Special Pages",
+    "section": "",
+    "text": "The code below shows the time of page generation:\n\nimport time\n\ngeneration = time.strftime('%A %B %d %Y at %H:%M:%S (UTC)')\nprint(\"This page was generated at %s.\" % generation)\n\nThis page was generated at Wednesday November 30 2022 at 16:22:30 (UTC).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\n\n \n\n\n\nNov 30, 2022\n\n\nTalk Python - Episode Outline\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "legal.html",

@@ -1,5 +1,11 @@
 [
   {
+    "listing": "/special.html",
+    "items": [
+      "/special/talk-python.html"
+    ]
+  },
+  {
     "listing": "/index.html",
     "items": [
       "/posts/2022-11-23-fuel-prices/index.html",
